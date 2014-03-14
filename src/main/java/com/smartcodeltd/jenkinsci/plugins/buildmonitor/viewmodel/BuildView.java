@@ -6,6 +6,7 @@ import hudson.model.AbstractBuild;
 import hudson.model.Result;
 import hudson.model.Run;
 import hudson.model.User;
+import hudson.tasks.test.AbstractTestResultAction;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -83,6 +84,69 @@ public class BuildView implements BuildViewModel {
         }
 
         return 100;
+    }
+        
+    @Override
+    public int testTotalCount() {
+        if (this.build instanceof AbstractBuild<?, ?>) {
+            AbstractBuild<?, ?> jenkinsBuild = (AbstractBuild<?, ?>) this.build;
+            AbstractTestResultAction testresult = jenkinsBuild.getTestResultAction();
+            if(testresult != null){
+                int totalCount = testresult.getTotalCount();
+                return totalCount;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public int testFailCount() {
+        if (this.build instanceof AbstractBuild<?, ?>) {
+            AbstractBuild<?, ?> jenkinsBuild = (AbstractBuild<?, ?>) this.build;
+            AbstractTestResultAction testresult = jenkinsBuild.getTestResultAction();
+            if(testresult != null){
+                int failCount = testresult.getFailCount();
+                return failCount;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public int testSkipCount() {
+        if (this.build instanceof AbstractBuild<?, ?>) {
+            AbstractBuild<?, ?> jenkinsBuild = (AbstractBuild<?, ?>) this.build;
+            AbstractTestResultAction testresult = jenkinsBuild.getTestResultAction();
+            if(testresult != null){
+                int skipCount = testresult.getSkipCount();
+                return skipCount;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+    
+    @Override
+    public boolean isRobotBuild(){
+        if (this.build instanceof AbstractBuild<?, ?>) {
+            AbstractBuild<?, ?> jenkinsBuild = (AbstractBuild<?, ?>) this.build;
+            AbstractTestResultAction testresult = jenkinsBuild.getTestResultAction();
+            if(testresult.getDisplayName().equals("Robot Results")){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     private boolean isTakingLongerThanUsual() {

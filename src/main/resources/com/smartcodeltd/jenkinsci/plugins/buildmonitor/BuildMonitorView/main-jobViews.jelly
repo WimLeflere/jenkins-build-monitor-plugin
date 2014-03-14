@@ -22,7 +22,23 @@
                     </li>
                 </ul>
             </div>
-
+			<table>
+				<caption>Test results</caption>
+				<tbody>
+					<tr>
+						<td>Failed</td>
+						<td>Skipped</td>
+						<td>Total</td>
+					</tr>
+					<tr>
+						<td>{{job.testFailCount}}</td>
+						<td>{{job.testSkipCount}}</td>
+						<td>{{job.testTotalCount}}</td>
+					</tr>
+				</tbody>
+			</table>
+            <img data-ng-hide="job.robotBuild" src="/job/{{job.name}}/test/trend" alt="test trend" />
+            <img data-ng-show="job.robotBuild" src="/{{job.lastBuildUrl}}robot/graph" alt="test trend" />
             <a data-ng-show="!!job.lastBuildName" class="build-name"
                title="Details of {{job.name}}, build {{job.lastBuildName}}"
                href="{{job.lastBuildUrl}}">{{job.lastBuildName}}</a>

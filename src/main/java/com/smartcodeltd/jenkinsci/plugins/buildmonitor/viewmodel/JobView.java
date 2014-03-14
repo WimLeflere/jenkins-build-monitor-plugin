@@ -92,6 +92,26 @@ public class JobView {
     public int progress() {
         return lastBuild().progress();
     }
+    
+    @JsonProperty
+    public int testTotalCount() {
+        return lastBuild().testTotalCount();
+    }
+    
+    @JsonProperty
+    public int testFailCount() {
+        return lastBuild().testFailCount();
+    }
+    
+    @JsonProperty
+    public int testSkipCount() {
+        return lastBuild().testSkipCount();
+    }
+    
+    @JsonProperty
+    public boolean isRobotBuild() {
+        return lastBuild().isRobotBuild();
+    }
 
     @JsonProperty
     public Set<String> culprits() {

@@ -46,6 +46,26 @@ public class NullBuildView implements BuildViewModel {
     public int progress() {
         return 0;
     }
+       
+    @Override
+    public int testTotalCount() {
+        return 0;
+    }
+
+    @Override
+    public int testFailCount() {
+        return 0;
+    }
+
+    @Override
+    public int testSkipCount() {
+        return 0;
+    }
+    
+    @Override
+    public boolean isRobotBuild(){
+        return false;
+    }
 
     @Override
     public boolean hasPreviousBuild() {

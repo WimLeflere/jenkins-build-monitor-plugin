@@ -14,6 +14,11 @@ public interface BuildViewModel {
     public Duration duration();
     public Duration estimatedDuration();
     public int progress();
+    public int testTotalCount();
+    public int testFailCount();
+    public int testSkipCount();
+    public boolean isRobotBuild();
+    
 
     public boolean hasPreviousBuild();
     public BuildViewModel previousBuild();
